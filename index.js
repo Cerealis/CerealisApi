@@ -17,6 +17,12 @@ const sequelize = new Sequelize(
   }
 );
 
+const Info = sequelize.define(
+  "Info",
+  { firstname: Sequelize.STRING, email: Sequelize.STRING },
+  { timestamps: false }
+);
+
 app.get("/", (req, res) => {
   res.send("Api ok !");
 });
@@ -25,6 +31,7 @@ app.get("/getinfos", (req, res) => {
   try {
     sequelize.authenticate();
     sequelize.query("SELECT * FROM `infos`").then(([results, metadata]) => {
+      console.log(results);
       res.send(results);
     });
   } catch (error) {
