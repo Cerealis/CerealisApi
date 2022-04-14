@@ -15,5 +15,9 @@
     "mysql2": "^2.3.3",
     "sequelize": "^6.18.0",
     "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "supertest": "^6.2.2"
   }
 }
