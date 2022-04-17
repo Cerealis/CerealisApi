@@ -45,6 +45,14 @@ const addUser = async (firstname, email) => {
   });
 };
 
+// Delete info
+const deleteUser = async (id) => {
+  // TODO : do some tests for valid email i guess ?
+  await Info.destroy({ where: { id: id } }).catch((err) => {
+    console.log(err);
+  });
+};
+
 // Base url
 app.get("/", (req, res) => {
   res.send("Cerialis API");
@@ -75,6 +83,15 @@ app.get("/adduser", function (req, res) {
   res.send(
     `Info with firstName = ${firstName} and email = ${email} inserted in ${process.env.DB_NAME}`
   );
+});
+
+// Add user to database
+app.get("/deleteuser", function (req, res) {
+  const id = req.query.id;
+
+  deleteUser(id);
+
+  res.send(`User successfully deleted in ${process.env.DB_NAME}`);
 });
 
 // Listen configured port

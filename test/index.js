@@ -121,8 +121,8 @@ describe("Cerialis API", function () {
         if (err) {
           return done(err);
         }
-        callStatus = res.body;
-        expect(callStatus).to.equal("Cerialis API ok");
+        callStatus = res.body[1].firstname;
+        expect(callStatus).to.equal("Joël");
         // Done
         done();
       });
