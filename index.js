@@ -18,6 +18,8 @@ const sequelize = new Sequelize(
   }
 );
 
+console.log(process.env.DB_NAME);
+
 // Data model for Infos
 const Info = sequelize.define(
   "info", // Sequelize uses the pluralized form of the model name to search for the represented table. (infos in this case)
@@ -47,7 +49,6 @@ const addUser = async (firstname, email) => {
 
 // Delete info
 const deleteUser = async (id) => {
-  // TODO : do some tests for valid email i guess ?
   await Info.destroy({ where: { id: id } }).catch((err) => {
     console.log(err);
   });
@@ -85,7 +86,7 @@ app.get("/adduser", function (req, res) {
   );
 });
 
-// Add user to database
+// Delete user to database
 app.get("/deleteuser", function (req, res) {
   const id = req.query.id;
 
