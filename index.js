@@ -1,11 +1,14 @@
 require("dotenv").config();
 
 const express = require("express");
+var cors = require("cors");
 const app = express();
 const port = 8080;
 
 const mysql = require("mysql");
 const { Sequelize } = require("sequelize");
+
+app.use(cors());
 
 // Declare sql infos
 const sequelize = new Sequelize(
