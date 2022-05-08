@@ -24,9 +24,9 @@ const sequelize = new Sequelize(
   }
 );
 
-// Data model for Infos
-const Info = sequelize.define(
-  "info", // Sequelize uses the pluralized form of the model name to search for the represented table. (infos in this case)
+// Data model for Users
+const User = sequelize.define(
+  "user", // Sequelize uses the pluralized form of the model name to search for the represented table. (users in this case)
   {
     firstName: {
       type: Sequelize.STRING,
@@ -40,10 +40,10 @@ const Info = sequelize.define(
   }
 );
 
-// Insert info
+// Insert User
 const addUser = async (firstname, email) => {
   // TODO : do some tests for valid email i guess ?
-  await Info.create({
+  await User.create({
     firstName: firstname,
     email: email,
   }).catch((err) => {
@@ -51,9 +51,9 @@ const addUser = async (firstname, email) => {
   });
 };
 
-// Delete info
+// Delete User
 const deleteUser = async (id) => {
-  await Info.destroy({ where: { id: id } }).catch((err) => {
+  await User.destroy({ where: { id: id } }).catch((err) => {
     console.log(err);
   });
 };
@@ -67,12 +67,12 @@ const createApp = () => {
     res.send({ message: "Cerialis API ok" });
   });
 
-  // Get all infos of all users
-  app.get("/getinfos", (req, res) => {
+  // Get all users
+  app.get("/getusers", (req, res) => {
     // TODO : maybe do better code (async function)
     try {
       sequelize.authenticate();
-      sequelize.query("SELECT * FROM `infos`").then(([results, metadata]) => {
+      sequelize.query("SELECT * FROM `users`").then(([results, metadata]) => {
         console.log(results);
         res.send(results);
       });
@@ -90,7 +90,7 @@ const createApp = () => {
     addUser(firstName, email);
 
     res.send(
-      `Info with firstName = ${firstName} and email = ${email} inserted in ${process.env.DB_NAME}`
+      `User with firstName = ${firstName} and email = ${email} inserted in ${process.env.DB_NAME}`
     );
   });
 
@@ -150,7 +150,7 @@ describe("Cerialis API", function () {
         }
 
         sequelize
-          .query("SELECT `id` FROM `infos` WHERE `firstname` = 'testUser'`")
+          .query("SELECT `id` FROM `users` WHERE `firstname` = 'testUser'`")
           .then(([results, metadata]) => {
             lastId = results;
           });
@@ -161,7 +161,7 @@ describe("Cerialis API", function () {
 
   it("should get the last user", function (done) {
     request(app)
-      .get("/getinfos")
+      .get("/getusers")
       .set("Content-Type", "application/json")
       .expect(200, function (err, res) {
         if (err) {
