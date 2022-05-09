@@ -1,2 +1,3 @@
-# CerialisApi
- Api de l'application de la MSPR Cerialis
+# CerealisAPI
+
+Api de l'application de la MSPR Cerealis

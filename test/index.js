@@ -64,7 +64,7 @@ const createApp = () => {
   const router = express.Router();
 
   app.get("/", (req, res) => {
-    res.send({ message: "Cerialis API ok" });
+    res.send({ message: "Cerealis API ok" });
   });
 
   // Get all users
@@ -108,7 +108,7 @@ const createApp = () => {
   return app;
 };
 
-describe("Cerialis API", function () {
+describe("Cerealis API", function () {
   let app;
 
   // Called once before any of the tests in this block begin.
@@ -122,7 +122,7 @@ describe("Cerialis API", function () {
     });
   });
 
-  it("should send back a JSON object with message set to Cerialis API ok", function (done) {
+  it("should send back a JSON object with message set to Cerealis API ok", function (done) {
     request(app)
       .get("/")
       .set("Content-Type", "application/json")
@@ -131,7 +131,7 @@ describe("Cerialis API", function () {
           return done(err);
         }
         callStatus = res.body.message;
-        expect(callStatus).to.equal("Cerialis API ok");
+        expect(callStatus).to.equal("Cerealis API ok");
         // Done
 
         lastId = 12;

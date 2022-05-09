@@ -59,7 +59,7 @@ const deleteUser = async (id) => {
 
 // Base url
 app.get("/", (req, res) => {
-  res.send("Cerialis API");
+  res.send("Cerealis API");
 });
 
 // Get all users
