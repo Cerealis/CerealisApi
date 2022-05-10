@@ -100,5 +100,5 @@ app.get("/deleteuser", function (req, res) {
 
 // Listen configured port
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Cerealis api listening on port ${port}`);
 });
